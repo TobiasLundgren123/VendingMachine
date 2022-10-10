@@ -10,27 +10,44 @@ namespace VendingMachine.Data
     internal class VendingMachineService : IVending
     {
         private int money;
+        private int[] moneyDenominations;
+        private List<Product> products;
 
         public VendingMachineService(int money)
         {
             this.money = money;
+            moneyDenominations = new int[8] {1, 5, 10, 20, 50, 100, 500, 1000} ;
+            this.products = new List<Product>();
         }
 
-        public void Details()
+        public void Saldo()
         {
-            Console.WriteLine("Current saldo is: ");
+            Console.WriteLine("Current saldo is: " + this.money);
+        }
+
+        public void Details(Product product)
+        {
+            Console.WriteLine(product);
         }
 
         public void EndTransaction()
         {
             Console.WriteLine("Withdrawing " + this.money);
             this.money = 0;
-            
+            //Not sure how to use Dictionary here
         }
 
         public void InsertMoney(int amount)
         {
-            this.money += amount;
+            //if(Array.Exists(moneyDenominations,amount)
+            foreach(var money in moneyDenominations)
+            {
+                if (money == amount)
+                {
+                    this.money += amount;
+                }
+            }
+            
             
         }
 
@@ -54,7 +71,8 @@ namespace VendingMachine.Data
 
         public void ShowAll()
         {
-            throw new NotImplementedException();
+            foreach(Product product in this.products)
+            { Console.WriteLine(product); }
         }
     }
 }

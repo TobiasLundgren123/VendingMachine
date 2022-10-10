@@ -8,22 +8,25 @@ namespace VendingMachine.Model
 {
     internal class Drink : Product
     {
-
+        public string description { get; set; }
+        public string usage { get; set; }
         public Drink(string name, int price, int stock) : base(name, price, stock)
         {
         }
 
         public override void Examine()
         {
-            Console.WriteLine(this.Name + " has price {0} and there are {1} items remaining", this.Price, this.Stock);
+            Console.WriteLine("{1} - {0}. {1} has price {2} and there are {3} items remaining", this.description, this.Name, this.Price, this.Stock);
         }
 
         public override void Use()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("{0} - {1}", this.Name, this.usage);
         }
 
-
-
+        public override string? ToString()
+        {
+            return string.Format("{1} - {0}. {1} has price {2}", this.description, this.Name, this.Price);
+        }
     }
 }

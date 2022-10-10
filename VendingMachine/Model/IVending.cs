@@ -10,7 +10,7 @@ namespace VendingMachine.Model
     {
         void Purchase(Product product);
         void ShowAll();
-        void Details();
+        void Details(Product product);
         void InsertMoney(int amount);
         void EndTransaction();
     }
